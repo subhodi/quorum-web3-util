@@ -11,7 +11,9 @@ web3 = new Web3(new Web3.providers.HttpProvider(config[currentNode].url));
 web3.isConnected() ? console.log('Web3 is connected to ' + config[currentNode].url) : console.log('Web3 connection failed ' + config[currentNode].url);
 
 let DoNothingContract;
-deployContractUtil.deployContract(web3).then(contractInstance => {
+const contractName ='KeyVal';
+const args=[];
+deployContractUtil.deployContract(web3, contractName, args).then(contractInstance => {
     DoNothingContract = contractInstance;
 }).catch(err => {
     console.log(err.toString());

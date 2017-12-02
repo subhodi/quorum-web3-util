@@ -1,16 +1,17 @@
 const fs = require('fs');
 const solc = require('solc');
 
-deployContract = function (web3) {
-    const input = fs.readFileSync(__dirname + '/../contracts/DoNothing.sol');
+deployContract = function (web3, contractName, args) {
+    const input = fs.readFileSync(__dirname + '/../contracts/' + contractName + '.sol');
     const output = solc.compile(input.toString(), 1);
-    const bytecode = '0x' + output.contracts[':DoNothing'].bytecode;
-    const abi = JSON.parse(output.contracts[':DoNothing'].interface);
-    const DoNothing = web3.eth.contract(abi);
+    const bytecode = '0x' + output.contracts[':' + contractName + ''].bytecode;
+    const abi = JSON.parse(output.contracts[':' + contractName + ''].interface);
+    const contractInstance = web3.eth.contract(abi);
     return new Promise(function (resolve, reject) {
-        const DoNothingContract = DoNothing.new({
+        contractInstance.new(args, {
             from: web3.eth.accounts[0],
-            data: bytecode
+            data: bytecode,
+            gas: 3000000
         }, function (err, contract) {
             if (!err) {
                 if (!contract.address) {
