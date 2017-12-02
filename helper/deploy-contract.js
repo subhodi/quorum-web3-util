@@ -1,7 +1,7 @@
 const fs = require('fs');
 const solc = require('solc');
 
-deployContract = function (web3, contractName, args, privateFor) {
+deployContract = function (contractName, args, privateFor) {
     const input = fs.readFileSync(__dirname + '/../contracts/' + contractName + '.sol');
     const output = solc.compile(input.toString(), 1);
     const bytecode = '0x' + output.contracts[':' + contractName + ''].bytecode;
