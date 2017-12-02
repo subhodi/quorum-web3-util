@@ -21,6 +21,8 @@
   },
   "homepage": "https://github.com/subhodi/quorum-web3-util#readme",
   "dependencies": {
+    "fs": "0.0.1-security",
+    "solc": "^0.4.19",
     "web3": "^0.20.0"
   }
 }
