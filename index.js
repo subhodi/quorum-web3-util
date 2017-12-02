@@ -21,7 +21,8 @@ filter.watch(function (error, result) {
     const block = web3.eth.getBlock(result, true);
     console.log('current block #' + block.number);
     block.transactions.forEach(function (tx) {
-        console.log(JSON.stringify({'txID': tx.hash, 'validTime': block.timestamp}));
+        console.log('\x1b[32m', JSON.stringify({ 'txID': tx.hash, 'validTime': block.timestamp }));
+        console.log('\x1b[0m');
     });
 });
 

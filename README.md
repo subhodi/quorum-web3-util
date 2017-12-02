@@ -8,7 +8,7 @@ Javascript code to demo web3 SDK usage
 ## Setup
 ```
 npm install
-currentNode="node_1" npm start
+currentNode="development" npm start
 ```
 
 config has upto 3 node spec
