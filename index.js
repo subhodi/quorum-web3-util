@@ -14,7 +14,7 @@ web3.isConnected() ? console.log('Web3 is connected to ' + config[currentNode].u
 
 let keyvalContract = contractConfig.keyval;
 
-deployContractUtil.deployContract(web3, keyvalContract.name, keyvalContract.args).then(contractInstance => {
+deployContractUtil.deployContract(web3, keyvalContract.name, keyvalContract.args, [config.node_1.publicKey, config.node_2.publicKey]).then(contractInstance => {
     keyvalContract.instance = contractInstance;
 }).catch(err => {
     console.log(err.toString());

@@ -1,7 +1,7 @@
 const fs = require('fs');
 const solc = require('solc');
 
-deployContract = function (web3, contractName, args) {
+deployContract = function (web3, contractName, args, privateFor) {
     const input = fs.readFileSync(__dirname + '/../contracts/' + contractName + '.sol');
     const output = solc.compile(input.toString(), 1);
     const bytecode = '0x' + output.contracts[':' + contractName + ''].bytecode;
@@ -11,7 +11,8 @@ deployContract = function (web3, contractName, args) {
         contractInstance.new(args, {
             from: web3.eth.accounts[0],
             data: bytecode,
-            gas: 3000000
+            gas: 3000000,
+            privateFor: privateFor
         }, function (err, contract) {
             if (!err) {
                 if (!contract.address) {
